@@ -1,12 +1,15 @@
 import { Request, Response } from 'express';
+import TeamsService from '../services/TeamsService';
 
 import MatchesService from '../services/MatchesService';
 
 export default class MatchesController {
   private _matchesService: MatchesService;
+  private _teamsService: TeamsService;
 
   constructor() {
     this._matchesService = new MatchesService();
+    this._teamsService = new TeamsService();
   }
 
   async getAll(req: Request, res: Response) {
@@ -23,6 +26,10 @@ export default class MatchesController {
 
   async create(req: Request, res: Response) {
     const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals } = req.body;
+
+    const teamsId = [homeTeam, awayTeam];
+    const teamsById = teamsId.map((id) => this._teamsService.getById(id));
+    await Promise.all(teamsById);
 
     const matchCreated = await this
       ._matchesService.create({ homeTeam, awayTeam, homeTeamGoals, awayTeamGoals });
