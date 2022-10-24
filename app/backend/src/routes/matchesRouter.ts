@@ -6,10 +6,12 @@ import MatchesController from '../controllers/MatchesController';
 
 const router = Router();
 
-const loginController = new MatchesController();
+const matchesController = new MatchesController();
 
-router.post('/', authMiddleware, (req, res) => loginController.create(req, res));
+router.patch('/:id/finish', (req, res) => matchesController.finishMatch(req, res));
 
-router.get('/', (req, res) => loginController.getAll(req, res));
+router.post('/', authMiddleware, (req, res) => matchesController.create(req, res));
+
+router.get('/', (req, res) => matchesController.getAll(req, res));
 
 export default router;

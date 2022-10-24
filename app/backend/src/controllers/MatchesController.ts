@@ -18,7 +18,7 @@ export default class MatchesController {
     }
 
     const teamsByProgress = await this._matchesService.getAllByProgress(inProgress === 'true');
-    res.status(200).json(teamsByProgress);
+    return res.status(200).json(teamsByProgress);
   }
 
   async create(req: Request, res: Response) {
@@ -27,5 +27,12 @@ export default class MatchesController {
     const matchCreated = await this
       ._matchesService.create({ homeTeam, awayTeam, homeTeamGoals, awayTeamGoals });
     res.status(201).json(matchCreated);
+  }
+
+  async finishMatch(req: Request, res: Response) {
+    const { id } = req.params;
+    await this._matchesService.finishMatch(Number(id));
+
+    return res.status(200).json({ message: 'Finished' });
   }
 }

@@ -16,7 +16,7 @@ const authMiddleware = (req:Request, res: Response, next: NextFunction) => {
     req.body = { ...req.body, user: payload };
     return next();
   } catch (_error) {
-    return res.status(401).json({ message: 'Expired or invalid token' });
+    return res.status(401).json({ message: 'Token must be a valid token' });
   }
 };
 
