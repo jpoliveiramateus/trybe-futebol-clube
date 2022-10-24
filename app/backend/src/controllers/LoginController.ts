@@ -14,4 +14,9 @@ export default class LoginController {
     const token = await this.loginService.login({ email, password });
     return res.status(200).json({ token });
   }
+
+  validate = (req: Request, res: Response): Response => {
+    const { user } = req.body;
+    return res.status(200).json({ role: user.role });
+  };
 }

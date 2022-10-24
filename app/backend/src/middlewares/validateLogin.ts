@@ -10,6 +10,4 @@ const validateLogin = async (req: Request, res: Response, next: NextFunction) =>
   next();
 };
 
-export default {
-  validateLogin,
-};
+export default validateLogin;
