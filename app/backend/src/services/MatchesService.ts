@@ -1,6 +1,8 @@
 import Teams from '../database/models/TeamsModel';
 import Matches from '../database/models/MatchesModel';
 
+import ErrorWithStatus from '../helpers/ErrorWithStatus';
+
 import IMatch from '../interfaces/IMatch';
 
 export default class MatchesService {
@@ -28,6 +30,11 @@ export default class MatchesService {
 
   async create(match: IMatch): Promise<Matches> {
     const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals } = match;
+
+    if (homeTeam === awayTeam) {
+      throw new ErrorWithStatus('It is not possible to create a match with two equal teams', 422);
+    }
+
     const matchCreated = await this
       .model.create({ homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress: true });
     return matchCreated;
