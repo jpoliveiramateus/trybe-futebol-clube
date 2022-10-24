@@ -8,7 +8,7 @@ import ErrorWithStatus from '../helpers/ErrorWithStatus';
 export default class LoginService {
   constructor(private model = Users) { }
 
-  async login(user: IUserLogin) {
+  async login(user: IUserLogin): Promise<string> {
     const { email, password } = user;
 
     const userFound = await this.model.findOne({ where: { email } });

@@ -4,8 +4,10 @@ import validateLogin from '../middlewares/validateLogin';
 import authMiddleware from '../middlewares/authMiddleware';
 
 import LoginController from '../controllers/LoginController';
+import LoginService from '../services/LoginService';
 
-const loginController = new LoginController();
+const loginService = new LoginService();
+const loginController = new LoginController(loginService);
 const router = Router();
 
 router.get('/validate', authMiddleware, (req, res) => loginController.validate(req, res));
