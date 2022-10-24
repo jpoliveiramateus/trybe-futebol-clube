@@ -1,6 +1,6 @@
 import { compare } from 'bcryptjs';
 
-import generateToken from '../helpers/generateToken';
+import tokenFunction from '../helpers/generateToken';
 import Users from '../database/models/UsersModel';
 import IUserLogin from '../interfaces/IUserLogin';
 import ErrorWithStatus from '../helpers/ErrorWithStatus';
@@ -23,7 +23,7 @@ export default class LoginService {
       throw new ErrorWithStatus('Incorrect email or password', 401);
     }
 
-    const token = generateToken(userFound.id, userFound.role);
+    const token = tokenFunction.generateToken(userFound.id, userFound.role);
     return token;
   }
 }
