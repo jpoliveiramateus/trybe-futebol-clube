@@ -20,4 +20,12 @@ export default class MatchesController {
     const teamsByProgress = await this._matchesService.getAllByProgress(inProgress === 'true');
     res.status(200).json(teamsByProgress);
   }
+
+  async create(req: Request, res: Response) {
+    const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals } = req.body;
+
+    const matchCreated = await this
+      ._matchesService.create({ homeTeam, awayTeam, homeTeamGoals, awayTeamGoals });
+    res.status(201).json(matchCreated);
+  }
 }
