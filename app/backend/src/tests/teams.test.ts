@@ -27,7 +27,7 @@ describe('Teste da rota de teams "/teams/:id"', () => {
       const httpResponse = await chai.request(app).get('/teams/20');
 
       expect(httpResponse.status).to.be.equal(404);
-      expect(httpResponse.body).to.deep.equal({ message: 'Team not found' });
+      expect(httpResponse.body).to.deep.equal({ message: 'There is no team with such id!' });
     });
   });
 

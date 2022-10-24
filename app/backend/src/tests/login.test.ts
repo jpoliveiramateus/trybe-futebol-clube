@@ -91,7 +91,7 @@ describe('Teste da rota de validação "/login/validate"', () => {
         .send().set('Authorization', 'token_inválido');
 
       expect(httpResponse.status).to.be.equal(401);
-      expect(httpResponse.body).to.deep.equal({ message: 'Expired or invalid token' });
+      expect(httpResponse.body).to.deep.equal({ message: 'Token must be a valid token' });
     });
   });
   
