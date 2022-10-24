@@ -1,3 +1,5 @@
+import ErrorWithStatus from '../helpers/ErrorWithStatus';
+
 import Teams from '../database/models/TeamsModel';
 
 import ITeam from '../interfaces/ITeam';
@@ -8,5 +10,15 @@ export default class TeamsService {
   async getAll(): Promise<ITeam[]> {
     const teams = await this.model.findAll();
     return teams;
+  }
+
+  async getById(id: number): Promise<ITeam> {
+    const team = await this.model.findByPk(id);
+
+    if (!team) {
+      throw new ErrorWithStatus('Team not found', 404);
+    }
+
+    return team;
   }
 }
