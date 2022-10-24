@@ -10,7 +10,14 @@ export default class MatchesController {
   }
 
   async getAll(req: Request, res: Response) {
-    const teams = await this._matchesService.getAll();
-    return res.status(200).json(teams);
+    const { inProgress } = req.query;
+
+    if (!inProgress) {
+      const teams = await this._matchesService.getAll();
+      return res.status(200).json(teams);
+    }
+
+    const teamsByProgress = await this._matchesService.getAllByProgress(inProgress === 'true');
+    res.status(200).json(teamsByProgress);
   }
 }
