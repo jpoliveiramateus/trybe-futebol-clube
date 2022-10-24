@@ -13,6 +13,24 @@ const { expect } = chai;
 
 describe('Teste da rota de login "/login"', () => {
   describe('quando o login falha', () => {
+    it('deve retornar um status "400" ao tentar acessar sem o campo "email"', async () => {
+      const httpResponse = await chai.request(app).post('/login').send({
+        password: 'secret_admin',
+      });
+
+      expect(httpResponse.status).to.be.equal(400);
+      expect(httpResponse.body).to.deep.equal({ message: 'All fields must be filled' });
+    });
+
+    it('deve retornar um status "400" ao tentar acessar sem o campo "password"', async () => {
+      const httpResponse = await chai.request(app).post('/login').send({
+        email: 'admin@admin.com',
+      });
+
+      expect(httpResponse.status).to.be.equal(400);
+      expect(httpResponse.body).to.deep.equal({ message: 'All fields must be filled' });
+    });
+
     it('deve retornar um status "401" ao acessar com email inválido', async () => {
       const httpResponse = await chai.request(app).post('/login').send({
         email: 'teste@teste.com',
@@ -35,17 +53,26 @@ describe('Teste da rota de login "/login"', () => {
   });
 
   describe('quando o login é feito com sucesso', () => {
-    beforeEach(() => sinon.stub(tokenFunction, 'generateToken').resolves('random_token'))
-    afterEach(sinon.restore);
-
-    it('deve retornar o token com o status "200"', async () => {
+    it('deve retornar o status "200"', async () => {
       const httpResponse = await chai.request(app).post('/login').send({
         email: 'admin@admin.com',
         password: 'secret_admin',
       });
 
       expect(httpResponse.status).to.be.equal(200);
+    });
+
+    it('deve retornar o token', async () => {
+      sinon.stub(tokenFunction, 'generateToken').resolves('random_token');
+
+      const httpResponse = await chai.request(app).post('/login').send({
+        email: 'admin@admin.com',
+        password: 'secret_admin',
+      });
+      
       expect(httpResponse.body).to.deep.equal({ token: 'random_token' });
+      
+      sinon.restore();
     });
   });
 });
