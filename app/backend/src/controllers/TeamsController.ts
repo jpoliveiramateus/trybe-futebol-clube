@@ -1,12 +1,16 @@
 import { Request, Response } from 'express';
+import ITeam from '../interfaces/ITeam';
 
-import TeamsService from '../services/TeamsService';
+interface ITeamsService {
+  getAll(): Promise<ITeam[]>;
+  getById(id: number): Promise<ITeam>;
+}
 
 export default class TeamsController {
-  private _teamsService: TeamsService;
+  private _teamsService: ITeamsService;
 
-  constructor() {
-    this._teamsService = new TeamsService();
+  constructor(teamsService: ITeamsService) {
+    this._teamsService = teamsService;
   }
 
   async getAll(req: Request, res: Response) {
