@@ -16,12 +16,12 @@ export default class MatchesController {
     const { inProgress } = req.query;
 
     if (!inProgress) {
-      const teams = await this._matchesService.getAll();
-      return res.status(200).json(teams);
+      const matches = await this._matchesService.getAll();
+      return res.status(200).json(matches);
     }
 
-    const teamsByProgress = await this._matchesService.getAllByProgress(inProgress === 'true');
-    return res.status(200).json(teamsByProgress);
+    const matchesByProgress = await this._matchesService.getAllByProgress(inProgress === 'true');
+    return res.status(200).json(matchesByProgress);
   }
 
   async create(req: Request, res: Response) {
