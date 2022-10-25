@@ -35,6 +35,6 @@ INNER JOIN TRYBE_FUTEBOL_CLUBE.teams AS TE
 ON MA.home_team = TE.id
 WHERE MA.in_progress = 0
 GROUP BY TE.id
-ORDER BY totalPoints DESC, goalsBalance DESC, goalsFavor DESC`;
+ORDER BY totalPoints DESC, totalVictories DESC, goalsBalance DESC, goalsFavor DESC`;
 
 export default leaderboardHomeQuery;
