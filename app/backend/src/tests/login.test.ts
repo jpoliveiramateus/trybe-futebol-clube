@@ -49,7 +49,8 @@ describe('Teste da rota de login "/login"', () => {
     });
 
     it('deve retornar um status "401" ao acessar com senha inválida', async () => {
-      sinon.stub(Users, 'findOne').resolves(null);
+      sinon.stub(Users, 'findOne')
+        .resolves({ email: 'admin@admin.com', password: 'ndpoakdjnkasdasd'} as any);
 
       const httpResponse = await chai.request(app).post('/login').send({
         email: 'admin@admin.com',
