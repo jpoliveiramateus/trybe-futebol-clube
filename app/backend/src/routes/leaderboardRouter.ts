@@ -10,4 +10,6 @@ router.get('/away', (req, res) => leaderboardController.getAllByAway(req, res));
 
 router.get('/home', (req, res) => leaderboardController.getAllByHome(req, res));
 
+router.get('/', (req, res) => leaderboardController.getAll(req, res));
+
 export default router;
