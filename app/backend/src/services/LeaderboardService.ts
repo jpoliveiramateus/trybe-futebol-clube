@@ -1,12 +1,18 @@
 import sequelize from '../database/models';
 
-import leaderboardQuery from '../helpers/leaderboardQuery';
+import leaderboardAwayQuery from '../helpers/leaderboardAwayQuery';
+import leaderboardHomeQuery from '../helpers/leaderboardHomeQuery';
 
 export default class LeaderboardService {
   constructor(private model = sequelize) { }
 
-  async getAll() {
-    const [leaderboard] = await this.model.query(leaderboardQuery);
-    return leaderboard;
+  async getAllByHome() {
+    const [leaderboardByHome] = await this.model.query(leaderboardHomeQuery);
+    return leaderboardByHome;
+  }
+
+  async getAllByAway() {
+    const [leaderboardByAway] = await this.model.query(leaderboardAwayQuery);
+    return leaderboardByAway;
   }
 }

@@ -1,4 +1,4 @@
-const leaderboardQuery = `SELECT TE.team_name AS name,
+const leaderboardHomeQuery = `SELECT TE.team_name AS name,
 SUM(
 CASE 
 WHEN MA.home_team_goals > MA.away_team_goals THEN 3
@@ -37,4 +37,4 @@ WHERE MA.in_progress = 0
 GROUP BY TE.id
 ORDER BY totalPoints DESC, goalsBalance DESC, goalsFavor DESC`;
 
-export default leaderboardQuery;
+export default leaderboardHomeQuery;
