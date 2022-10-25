@@ -114,8 +114,13 @@ describe('Teste da rota de validação "/login/validate"', () => {
   });
   
   describe('quando a validação é feita com sucesso', () => {
-    beforeEach(() => sinon.stub(tokenFunction, 'generateToken')
-      .resolves('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY2NjEwOTczfQ.TLub2yP8JKI7NsJZkCul9AwXBpZNKoreHDcnazrY8S8'))
+    beforeEach(() => {
+      sinon.stub(Users, 'findOne')
+        .resolves({ email: 'admin@admin.com', password: 'secrect_admin'} as any);
+      sinon.stub(bcrypt, 'compare').resolves(true);
+      sinon.stub(tokenFunction, 'generateToken')
+      .resolves('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjY2NjEwOTczfQ.TLub2yP8JKI7NsJZkCul9AwXBpZNKoreHDcnazrY8S8')
+    });
     afterEach(sinon.restore);
 
     it('deve retorar um objeto contendo a função do usuário com o status "200"', async () => {
