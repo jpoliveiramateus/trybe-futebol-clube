@@ -6,6 +6,9 @@ import chaiHttp = require('chai-http');
 import { app } from '../app';
 
 import tokenFunction from '../helpers/generateToken';
+import * as bcrypt from 'bcryptjs';
+
+import Users from '../database/models/UsersModel';
 
 chai.use(chaiHttp);
 
@@ -32,6 +35,8 @@ describe('Teste da rota de login "/login"', () => {
     });
 
     it('deve retornar um status "401" ao acessar com email inválido', async () => {
+      sinon.stub(Users, 'findOne').resolves(null);
+
       const httpResponse = await chai.request(app).post('/login').send({
         email: 'teste@teste.com',
         password: 'secret_admin',
@@ -39,9 +44,13 @@ describe('Teste da rota de login "/login"', () => {
 
       expect(httpResponse.status).to.be.equal(401);
       expect(httpResponse.body).to.deep.equal({ message: 'Incorrect email or password' });
+
+      sinon.restore();
     });
 
     it('deve retornar um status "401" ao acessar com senha inválida', async () => {
+      sinon.stub(Users, 'findOne').resolves(null);
+
       const httpResponse = await chai.request(app).post('/login').send({
         email: 'admin@admin.com',
         password: 'teste_teste',
@@ -49,10 +58,19 @@ describe('Teste da rota de login "/login"', () => {
 
       expect(httpResponse.status).to.be.equal(401);
       expect(httpResponse.body).to.deep.equal({ message: 'Incorrect email or password' });
+
+      sinon.restore();
     });
   });
 
   describe('quando o login é feito com sucesso', () => {
+    beforeEach(() => {
+      sinon.stub(Users, 'findOne')
+        .resolves({ email: 'admin@admin.com', password: 'secrect_admin'} as any);
+      sinon.stub(bcrypt, 'compare').resolves(true);
+    });
+    afterEach(sinon.restore);
+
     it('deve retornar o status "200"', async () => {
       const httpResponse = await chai.request(app).post('/login').send({
         email: 'admin@admin.com',
