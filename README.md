@@ -46,10 +46,34 @@ Na sua máquina você deve ter:
 
 </details>
 
+## 👨🏻‍💻 Habilidades
+
+- Realização da dockerização dos apps, network, volume e compose;
+- Modelagem de dados com MySQL através do Sequelize;
+- Criação e associação de tabelas usando models do sequelize;
+- Construção de uma API REST com endpoints para consumir os models criados;
+- Construção de um CRUD com TypeScript, utilizando ORM;
+- Validar dados das requisições com a biblioteca Joi.
+- Implementar testes de integração com Mocha, Chai e Sinon.
+
 ## Documentação da API
 
 
-## Stack utilizada
+## 🛠️ Ferramentas & Metodologias Utilizadas
 
-**Back-end:** Node, Express, TypeScript, Sequelize, JWT, Mocha, Chai, Sinon.
+- [Node.js](https://nodejs.org/en/);
+- [Express.js](https://expressjs.com/);
+- [MYSQL](https://www.mysql.com/);
+- [mysql2](https://www.npmjs.com/package/mysql2);
+- [Sequelize(ORM)](https://sequelize.org/);
+- [JWT(Autenticação)](https://jwt.io/);
+- [Joi](https://joi.dev/api/?v=17.6.0);
+- [Docker](https://www.docker.com/);
+- [TypeScript](https://www.typescriptlang.org/);
+- [Mocha](https://mochajs.org/);
+- [Chai](https://www.chaijs.com/);
+- [Sinon.js](https://sinonjs.org/);
+
+---
+⌨️ desenvolvido por [João Pedro Oliveira](https://www.linkedin.com/in/jpoliveira7/) 😄
 
