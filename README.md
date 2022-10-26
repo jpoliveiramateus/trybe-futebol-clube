@@ -46,6 +46,8 @@ Na sua máquina você deve ter:
 
 </details>
 
+## 🔎 Documentação da API
+
 ## 👨🏻‍💻 Habilidades
 
 - Realização da dockerização dos apps, network, volume e compose;
@@ -56,14 +58,30 @@ Na sua máquina você deve ter:
 - Validar dados das requisições com a biblioteca Joi.
 - Implementar testes de integração com Mocha, Chai e Sinon.
 
-## Documentação da API
+## 🧪 Executando os testes
+
+Entre na pasta do backend ```cd app/backend```
+
+```
+npm run test
+```
+
+![Captura de tela de 2022-10-26 10-52-53](https://user-images.githubusercontent.com/99822908/198052383-4fcb9b71-4147-48a2-ae1d-74495e34c93d.png)
+
+Testes de cobertura:
+
+```
+npm run test:coverage
+```
+
+![Captura de tela de 2022-10-25 19-09-31](https://user-images.githubusercontent.com/99822908/198052434-3084e8f0-3609-4a8a-b8f7-b015cd7308f4.png)
 
 
 ## 🛠️ Ferramentas & Metodologias Utilizadas
 
 - [Node.js](https://nodejs.org/en/);
 - [Express.js](https://expressjs.com/);
-- [MYSQL](https://www.mysql.com/);
+- [MySQL](https://www.mysql.com/);
 - [mysql2](https://www.npmjs.com/package/mysql2);
 - [Sequelize(ORM)](https://sequelize.org/);
 - [JWT(Autenticação)](https://jwt.io/);
