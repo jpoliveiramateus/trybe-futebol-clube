@@ -50,9 +50,6 @@ Na sua máquina você deve ter:
 
 ## 🔎 Documentação da API
 
-
-## Documentação da API
-
 #### Login
 
 ```
