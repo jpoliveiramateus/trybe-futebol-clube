@@ -12,6 +12,8 @@ Clone o repositório:
 
 ```
 git clone git@github.com:jpoliveiramateus/trybe-futebol-clube.git
+cd trybe-futebol-clube
+npm install
 ```
 
 <details>
@@ -38,7 +40,7 @@ Na sua máquina você deve ter:
 </details>
 
 <details>
-  <summary><strong>🐋 Rodando no Docker vs Localmente</strong></summary>
+  <summary><strong>🐋 Rodando no Docker</strong></summary>
   
   <br/>
 
@@ -47,6 +49,99 @@ Na sua máquina você deve ter:
 </details>
 
 ## 🔎 Documentação da API
+
+
+## Documentação da API
+
+#### Login
+
+```
+  POST /login 
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `email` | `string` | **Obrigatório**. Seu email. |
+| `password` | `string` | **Obrigatório**. Sua senha. |
+
+#### Validação de Login
+
+```
+  GET /login/validate
+```
+
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `Authorization`      | `string` | **Obrigatório**. Token do login deve ser passado no header. |
+
+#### Times
+
+```
+  GET /teams
+```
+
+```
+  GET /teams/:id
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id` | `string` | **Obrigatório**. Id do time deve ser passado pelo parâmetro da URL. |
+
+#### Partidas
+
+```
+  GET /matches
+```
+
+```
+  GET /matches?inProgress=true
+```
+
+```
+  GET /matches?inProgress=false
+```
+
+```
+  POST /matches
+```
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `homeTeam` | `number` | **Obrigatório**. Id do time da casa. |
+| `awayTeam` | `number` | **Obrigatório**. Id do time visitante. |
+| `homeTeamGoals` | `number` | **Obrigatório**. Número de gols do time da casa. |
+| `awayTeamGoals` | `number` | **Obrigatório**. Número de gols do time visitante. |
+| `Authorization`      | `string` | **Obrigatório**. Token do login deve ser passado no header. |
+
+```
+  PATCH /matches/:id/finish
+```
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id` | `string` | **Obrigatório**. Id da partida deve ser passada pelo parâmetro da URL. |
+
+```
+  PATCH /matches/:id/
+```
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id` | `string` | **Obrigatório**. Id da partida deve ser passada pelo parâmetro da URL. |
+| `homeTeamGoals` | `number` | **Obrigatório**. Número de gols do time da casa. |
+| `awayTeamGoals` | `number` | **Obrigatório**. Número de gols do time visitante. |
+
+#### Tabela de Classificação
+
+```
+  GET /leaderboard/home
+```
+
+```
+  GET /leaderboard/away
+```
+
+```
+  GET /leaderboard
+```
 
 ## 👨🏻‍💻 Habilidades
 
