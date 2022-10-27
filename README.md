@@ -177,6 +177,7 @@ npm run test:coverage
 - [mysql2](https://www.npmjs.com/package/mysql2);
 - [Sequelize(ORM)](https://sequelize.org/);
 - [JWT(Autenticação)](https://jwt.io/);
+- [bcrypt.js](https://github.com/kelektiv/node.bcrypt.js#readme);
 - [Joi](https://joi.dev/api/?v=17.6.0);
 - [Docker](https://www.docker.com/);
 - [TypeScript](https://www.typescriptlang.org/);
